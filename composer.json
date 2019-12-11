@@ -11,8 +11,8 @@
     ],
     "homepage": "https://github.com/anamcoollzz/stisla",
     "keywords": ["Laravel", "Stisla"],
-    "require": {
-        "laravel/framework": "^6.0"
+    "require-dev": {
+        "laravel/framework": ">=5.8"
     },
     "autoload": {
         "psr-4": {
