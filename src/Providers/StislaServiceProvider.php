@@ -32,7 +32,7 @@ class StislaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/stisla.php', 'stisla');
+        $this->mergeConfigFrom(__DIR__.'/../../config/stisla.php', 'stisla');
 
         // Register the service the package provides.
         $this->app->singleton('stisla', function ($app) {
@@ -59,7 +59,7 @@ class StislaServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/stisla.php' => config_path('stisla.php'),
+            __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
         ], 'stisla.config');
 
         // Publishing the views.
