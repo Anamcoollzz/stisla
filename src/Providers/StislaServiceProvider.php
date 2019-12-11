@@ -13,7 +13,6 @@ class StislaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        dd('dssd');
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'anamcoollzz');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'anamcoollzz');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
