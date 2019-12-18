@@ -72,6 +72,10 @@ class StislaServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->publishes([
+            __DIR__ . '/../resources/lang' => resource_path('resources/lang'),
+        ], 'lang');
+
+        $this->publishes([
             __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
         ], 'controllers');
 
