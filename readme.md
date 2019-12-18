@@ -23,7 +23,9 @@ Please see the [changelog](changelog.md) for more information on what has change
 
 # Step by step
 - Setup your database configuration first in ```.env```
-- Remove all default migrations in database/migrations folder
+- Remove ```User.php``` in app folder
+- Remove all default migrations in ```database/migrations``` folder
+- Remove all default seeder in ```database/seeds``` folder
 - Publish all stisla component with below
 ``` bash 
 $ php artisan vendor:publish --tag=stisla.all 
@@ -60,7 +62,7 @@ $ php artisan migrate --seed
 Route::get('/masuk', 'Stisla\AutentikasiController@formMasuk')->name('masuk');
 Route::post('/masuk', 'Stisla\AutentikasiController@masuk');
 
-Route::middleware('auth')->group(function(){
+Route::middleware(\App\Http\Middleware\Masuk::class)->group(function(){
 
 	Route::get('/', 'Stisla\AutentikasiController@dashboard')->name('dashboard');
 	Route::get('/profil', 'Stisla\AutentikasiController@profil')->name('profil');

@@ -79,6 +79,10 @@ class StislaServiceProvider extends ServiceProvider
         ], 'controllers');
 
         $this->publishes([
+            __DIR__ . '/../Middleware' => base_path('app\Http\Middleware'),
+        ], 'middleware');
+
+        $this->publishes([
             __DIR__ . '/../Models' => base_path('app'),
         ], 'models');
 
@@ -94,11 +98,12 @@ class StislaServiceProvider extends ServiceProvider
             __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
             __DIR__ . '/../resources/lang' => resource_path('lang'),
             __DIR__ . '/../resources/views' => resource_path('views/stisla'),
-            __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
+            __DIR__ . '/../../config/stisla.php' => config_path('stisla.php'),
             __DIR__ . '/../Models' => base_path('app'),
             __DIR__ . '/../public' => public_path('stisla'),
             __DIR__ . '/../database/migrations' => base_path('database\migrations'),
             __DIR__ . '/../database/seeds' => base_path('database\seeds'),
+            __DIR__ . '/../Middleware' => base_path('app\Http\Middleware'),
         ], 'stisla.all');
 
         \Schema::defaultStringLength(191);
