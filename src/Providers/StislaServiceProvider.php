@@ -79,11 +79,21 @@ class StislaServiceProvider extends ServiceProvider
         ], 'controllers');
 
         $this->publishes([
+            __DIR__ . '/../Models' => base_path('app'),
+        ], 'models');
+
+        $this->publishes([
+            __DIR__ . '/../migrations' => base_path('database\migrations'),
+        ], 'migrations');
+
+        $this->publishes([
             __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
-            __DIR__ . '/../resources/lang' => resource_path('resources/lang'),
-            __DIR__ . '/../resources/views' => resource_path('resources/views/stisla'),
+            __DIR__ . '/../resources/lang' => resource_path('lang'),
+            __DIR__ . '/../resources/views' => resource_path('views/stisla'),
             __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
+            __DIR__ . '/../Models' => base_path('app'),
             __DIR__ . '/../public' => public_path('stisla'),
+            __DIR__ . '/../migrations' => base_path('database\migrations'),
         ], 'stisla.all');
 
 

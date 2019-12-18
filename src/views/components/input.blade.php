@@ -1,7 +1,7 @@
 @if(count($errors->all()) > 0)
 
 <div class="form-group">
-  <label for="{{ $id }}">{{ $label }}</label>
+  <label for="{{ $id }}">{{ $label }} @isset($no_required) @else <font color="red">(*)</font> @endisset</label>
   <div class="input-group">
     <div class="input-group-prepend">
       <div class="input-group-text">
@@ -24,7 +24,7 @@
 @else
 
 <div class="form-group">
-  <label for="{{ $id }}">{{ $label }}</label>
+  <label for="{{ $id }}">{{ $label }} @isset($no_required) @else <font color="red">(*)</font> @endisset</label>
   <div class="input-group">
     <div class="input-group-prepend">
       <div class="input-group-text">

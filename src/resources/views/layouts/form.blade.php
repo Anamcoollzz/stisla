@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  @include('layouts.title')
+  @include('stisla.layouts.title')
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -13,15 +12,15 @@
   @stack('css')
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('stisla/assets/css/components.css') }}">
 </head>
 
 <body>
   <div id="app">
     <div class="main-wrapper">
-      @include('layouts.navbar')
-      @include('layouts.sidebar')
+      @include('stisla.layouts.navbar')
+      @include('stisla.layouts.sidebar')
 
       <!-- Main Content -->
       <div class="main-content">
@@ -29,7 +28,7 @@
           @yield('konten')
         </section>
       </div>
-      @include('layouts.footer')
+      @include('stisla.layouts.footer')
     </div>
   </div>
 
@@ -39,15 +38,15 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="{{ asset('assets/js/stisla.js') }}"></script>
+  <script src="{{ asset('stisla/assets/js/stisla.js') }}"></script>
 
   <!-- JS Libraies -->
-  <script src="{{ asset('node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
+  <script src="{{ asset('stisla/node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
   @stack('js')
 
   <!-- Template JS File -->
-  <script src="{{ asset('assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
+  <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
 
   @stack('script')
 

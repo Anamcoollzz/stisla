@@ -31,4 +31,44 @@ class AutentikasiController extends Controller
 		\Auth::login($user, $request->filled('remember'));
 		return redirect()->route('dashboard');
 	}
+
+	public function dashboard()
+	{
+		return view('stisla.dashboard.index', [
+			'title'			=> 'Dashboard',
+			'active'		=> 'dashboard',
+		]);
+	}
+
+	public function keluar()
+	{
+		\Auth::logout();
+		return redirect()->route('masuk');
+	}
+
+	public function profil()
+	{
+		return view('stisla.profil.index', [
+			'title'		=> 'Profil',
+			'active'	=> null,
+			'd'			=> \Auth::user(),
+			'action'	=> route('profil.update'),
+		]);
+	}
+
+	public function perbaruiProfil(Request $request)
+	{
+		$user = \Auth::user();
+		$request->validate([
+			'nama'			=> 'required',
+			'email'			=> 'required|unique:users,email,'.$user->id,
+			'password'		=> 'nullable|min:5',
+		]);
+		$user->nama = $request->nama;
+		$user->email = $request->email;
+		if($request->filled('password'))
+			$user->password = $request->password;
+		$user->save();
+		return redirect()->back()->with('success_msg', 'Profil berhasil diperbarui');
+	}
 }

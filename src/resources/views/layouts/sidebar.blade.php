@@ -1,33 +1,21 @@
+@php
+  $_nama_aplikasi = \App\Pengaturan::where('key', 'nama_aplikasi')->first()->value;
+  $_nama_aplikasi_mobile = \App\Pengaturan::where('key', 'nama_aplikasi_mobile')->first()->value;
+@endphp
 <div class="main-sidebar">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="{{ route('dashboard') }}">{{ config('app.name') }}</a>
+      <a href="{{ route('dashboard') }}">{{ $_nama_aplikasi }}</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-      <a href="{{ route('dashboard') }}">{{ config('app.name_mobile') }}</a>
+      <a href="{{ route('dashboard') }}">{{ $_nama_aplikasi_mobile }}</a>
     </div>
     <ul class="sidebar-menu">
-      <li @if($active == 'dashboard') class="active" @endif>
-        <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
+      @foreach (\App\Menu::all() as $menu)
+      <li @if($active == $menu->route) class="active" @endif>
+        <a @if($menu->is_blank) target="_blank" @endif class="nav-link" href="{{ route($menu->route) }}"><i class="{{$menu->ikon}}"></i> <span>{{$menu->nama}}</span></a>
       </li>
-      <li @if($active == 'divisi.index') class="active" @endif>
-        <a class="nav-link" href="{{ route('divisi.index') }}"><i class="fas fa-university"></i> <span>Divisi</span></a>
-      </li>
-      <li @if($active == 'jabatan.index') class="active" @endif>
-        <a class="nav-link" href="{{ route('jabatan.index') }}"><i class="fas fa-briefcase"></i> <span>Jabatan</span></a>
-      </li>
-      <li @if($active == 'pegawai.index') class="active" @endif>
-        <a class="nav-link" href="{{ route('pegawai.index') }}"><i class="fas fa-users"></i> <span>Pegawai</span></a>
-      </li>
-      <li @if($active == 'kehadiran.index') class="active" @endif>
-        <a class="nav-link" href="{{ route('kehadiran.index') }}"><i class="fas fa-clock"></i> <span>Kehadiran</span></a>
-      </li>
-      <li @if($active == 'area-kehadiran.index') class="active" @endif>
-        <a class="nav-link" href="{{ route('area-kehadiran.index') }}"><i class="fas fa-map"></i> <span>Area Kehadiran</span></a>
-      </li>
-      <li>
-        <a class="nav-link" href="{{ route('keluar') }}"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
-      </li>
+      @endforeach
     </ul>
   </aside>
 </div>

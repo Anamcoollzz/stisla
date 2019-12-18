@@ -21,10 +21,19 @@ $ composer require anamcoollzz/stisla
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
 
-## Testing
-
-``` bash
-$ composer test
+# Step by step
+- Setup your database configuration first in ```.env```
+- Publish all stisla component with below
+``` bash 
+$ php artisan vendor:publish --tag=stisla.all 
+```
+- run dump with
+``` bash 
+$ composer dump-autoload 
+```
+- run 
+``` bash 
+$ php artisan migrate --seed 
 ```
 
 ## Add to your register method in AppServiceProvider
@@ -35,6 +44,7 @@ $ composer test
     'edit'      => 'ubah',
 ]);
 \Blade::include('stisla.components.input', 'input');
+\Blade::include('stisla.components.inputemail', 'email');
 \Blade::include('stisla.components.inputnumber', 'inputnumber');
 \Blade::include('stisla.components.inputimage', 'inputimage');
 \Blade::include('stisla.components.inputexcel', 'inputexcel');
@@ -48,6 +58,15 @@ $ composer test
 ``` php
 Route::get('/masuk', 'Stisla\AutentikasiController@formMasuk')->name('masuk');
 Route::post('/masuk', 'Stisla\AutentikasiController@masuk');
+
+Route::middleware('auth')->group(function(){
+
+	Route::get('/', 'Stisla\AutentikasiController@dashboard')->name('dashboard');
+	Route::get('/profil', 'Stisla\AutentikasiController@profil')->name('profil');
+	Route::put('/profil', 'Stisla\AutentikasiController@perbaruiProfil')->name('profil.update');
+	Route::get('/keluar', 'Stisla\AutentikasiController@keluar')->name('keluar');
+
+});
 ```
 
 ## Contributing
