@@ -36,12 +36,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-          "php artisan vendor:publish --tag=public --force",
-          "php artisan vendor:publish --tag=views --force"
+          "php artisan vendor:publish --tag=stisla.all --force"
       ],
         "post-update-cmd": [
-          "php artisan vendor:publish --tag=public --force",
-          "php artisan vendor:publish --tag=views --force"
+          "php artisan vendor:publish --tag=stisla.all --force"
       ]
     }
 }

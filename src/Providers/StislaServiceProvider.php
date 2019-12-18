@@ -37,6 +37,19 @@ class StislaServiceProvider extends ServiceProvider
         $this->app->singleton('stisla', function ($app) {
             return new Stisla;
         });
+
+        \Schema::defaultStringLength(191);
+        \Route::resourceVerbs([
+            'create'    => 'tambah',
+            'edit'      => 'ubah',
+        ]);
+        \Blade::include('stisla.components.input', 'input');
+        \Blade::include('stisla.components.inputnumber', 'inputnumber');
+        \Blade::include('stisla.components.inputimage', 'inputimage');
+        \Blade::include('stisla.components.inputexcel', 'inputexcel');
+        \Blade::include('stisla.components.textarea', 'textarea');
+        \Blade::include('stisla.components.select', 'select');
+        \Blade::include('stisla.components.datepicker', 'datepicker');
     }
 
     /**
@@ -57,8 +70,6 @@ class StislaServiceProvider extends ServiceProvider
     protected function bootForConsole()
     {
 
-        $this->loadRoutesFrom(__DIR__.'/../routes/stisla.php');
-
         $this->publishes([
             __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
         ], 'stisla.config');
@@ -78,6 +89,16 @@ class StislaServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
         ], 'controllers');
+
+        $this->publishes([
+            __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
+            __DIR__ . '/../resources/lang' => resource_path('resources/lang'),
+            __DIR__ . '/../resources/views' => resource_path('resources/views/stisla'),
+            __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
+            __DIR__ . '/../public' => public_path('stisla'),
+        ], 'stisla.all');
+
+
 
         // Publishing the views.
         /*$this->publishes([
