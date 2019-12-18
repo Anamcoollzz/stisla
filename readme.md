@@ -27,6 +27,29 @@ Please see the [changelog](changelog.md) for more information on what has change
 $ composer test
 ```
 
+## Add to your register method in AppServiceProvider
+
+``` php
+\Route::resourceVerbs([
+    'create'    => 'tambah',
+    'edit'      => 'ubah',
+]);
+\Blade::include('stisla.components.input', 'input');
+\Blade::include('stisla.components.inputnumber', 'inputnumber');
+\Blade::include('stisla.components.inputimage', 'inputimage');
+\Blade::include('stisla.components.inputexcel', 'inputexcel');
+\Blade::include('stisla.components.textarea', 'textarea');
+\Blade::include('stisla.components.select', 'select');
+\Blade::include('stisla.components.datepicker', 'datepicker');
+```
+
+## Add to your web.php in routes folder
+
+``` php
+Route::get('/masuk', 'Stisla\AutentikasiController@formMasuk')->name('masuk');
+Route::post('/masuk', 'Stisla\AutentikasiController@masuk');
+```
+
 ## Contributing
 
 Please see [contributing.md](contributing.md) for details and a todolist.

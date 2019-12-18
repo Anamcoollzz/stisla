@@ -38,18 +38,6 @@ class StislaServiceProvider extends ServiceProvider
             return new Stisla;
         });
 
-        \Schema::defaultStringLength(191);
-        \Route::resourceVerbs([
-            'create'    => 'tambah',
-            'edit'      => 'ubah',
-        ]);
-        \Blade::include('stisla.components.input', 'input');
-        \Blade::include('stisla.components.inputnumber', 'inputnumber');
-        \Blade::include('stisla.components.inputimage', 'inputimage');
-        \Blade::include('stisla.components.inputexcel', 'inputexcel');
-        \Blade::include('stisla.components.textarea', 'textarea');
-        \Blade::include('stisla.components.select', 'select');
-        \Blade::include('stisla.components.datepicker', 'datepicker');
     }
 
     /**
