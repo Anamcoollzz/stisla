@@ -32,9 +32,6 @@ class StislaServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/stisla.php', 'stisla');
-        $this->publishes([
-            __DIR__ . '/../../public' => public_path('stisla'),
-        ], 'public');
 
         // Register the service the package provides.
         $this->app->singleton('stisla', function ($app) {
@@ -63,6 +60,10 @@ class StislaServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
         ], 'stisla.config');
+
+        $this->publishes([
+            __DIR__ . '/../../public' => public_path('stisla'),
+        ], 'public');
 
         // Publishing the views.
         /*$this->publishes([
