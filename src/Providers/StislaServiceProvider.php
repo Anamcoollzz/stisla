@@ -97,10 +97,23 @@ class StislaServiceProvider extends ServiceProvider
             __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
             __DIR__ . '/../Models' => base_path('app'),
             __DIR__ . '/../public' => public_path('stisla'),
-            __DIR__ . '/../migrations' => base_path('database\migrations'),
+            __DIR__ . '/../database/migrations' => base_path('database\migrations'),
             __DIR__ . '/../database/seeds' => base_path('database\seeds'),
         ], 'stisla.all');
 
+
+        \Route::resourceVerbs([
+            'create'    => 'tambah',
+            'edit'      => 'ubah',
+        ]);
+        \Blade::include('stisla.components.input', 'input');
+        \Blade::include('stisla.components.inputemail', 'email');
+        \Blade::include('stisla.components.inputnumber', 'inputnumber');
+        \Blade::include('stisla.components.inputimage', 'inputimage');
+        \Blade::include('stisla.components.inputexcel', 'inputexcel');
+        \Blade::include('stisla.components.textarea', 'textarea');
+        \Blade::include('stisla.components.select', 'select');
+        \Blade::include('stisla.components.datepicker', 'datepicker');
 
 
         // Publishing the views.
