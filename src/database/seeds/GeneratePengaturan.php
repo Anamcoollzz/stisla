@@ -32,5 +32,10 @@ class GeneratePengaturan extends Seeder
         ], [
             'value'     => '1.0.0',
         ]);
+        Pengaturan::updateOrCreate([
+            'key'       => 'nama_perusahaan',
+        ], [
+            'value'     => 'Nama Perusahaan',
+        ]);
     }
 }

@@ -83,8 +83,12 @@ class StislaServiceProvider extends ServiceProvider
         ], 'models');
 
         $this->publishes([
-            __DIR__ . '/../migrations' => base_path('database\migrations'),
+            __DIR__ . '/../database/migrations' => base_path('database\migrations'),
         ], 'migrations');
+
+        $this->publishes([
+            __DIR__ . '/../database/seeds' => base_path('database\seeds'),
+        ], 'seeds');
 
         $this->publishes([
             __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
@@ -94,6 +98,7 @@ class StislaServiceProvider extends ServiceProvider
             __DIR__ . '/../Models' => base_path('app'),
             __DIR__ . '/../public' => public_path('stisla'),
             __DIR__ . '/../migrations' => base_path('database\migrations'),
+            __DIR__ . '/../database/seeds' => base_path('database\seeds'),
         ], 'stisla.all');
 
 
