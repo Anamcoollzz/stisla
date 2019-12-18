@@ -56,6 +56,7 @@ class StislaServiceProvider extends ServiceProvider
      */
     protected function bootForConsole()
     {
+         $this->loadRoutesFrom(__DIR__.'/../routes.php');
         // Publishing the configuration file.
         $this->publishes([
             __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
@@ -64,6 +65,10 @@ class StislaServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../public' => public_path('stisla'),
         ], 'public');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/views' => resource_path('resources/views/stisla'),
+        ], 'views');
 
         // Publishing the views.
         /*$this->publishes([

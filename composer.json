@@ -36,10 +36,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-          "php artisan vendor:publish --tag=public --force"
+          "php artisan vendor:publish --tag=public --force",
+          "php artisan vendor:publish --tag=views --force"
       ],
         "post-update-cmd": [
-          "php artisan vendor:publish --tag=public --force"
+          "php artisan vendor:publish --tag=public --force",
+          "php artisan vendor:publish --tag=views --force"
       ]
     }
 }
