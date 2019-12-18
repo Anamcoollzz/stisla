@@ -1,1 +1,0 @@
-@input(['type'=>'number', 'id'=>'email', 'label'=>'Email'])

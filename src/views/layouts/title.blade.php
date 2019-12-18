@@ -1,1 +1,0 @@
-<title>{{ $title }} &mdash; {{ config('app.name') }}</title>
