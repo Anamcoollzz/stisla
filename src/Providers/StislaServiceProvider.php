@@ -101,7 +101,7 @@ class StislaServiceProvider extends ServiceProvider
             __DIR__ . '/../database/seeds' => base_path('database\seeds'),
         ], 'stisla.all');
 
-
+        \Schema::defaultStringLength(191);
         \Route::resourceVerbs([
             'create'    => 'tambah',
             'edit'      => 'ubah',
