@@ -1,9 +1,13 @@
+@php
+  $_nama_aplikasi = \App\Pengaturan::where('key', 'nama_aplikasi')->first()->value;
+  $_logo = \App\Pengaturan::where('key', 'logo')->first()->value;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Masuk &mdash; {{ config('app.name') }}</title>
+  <title>Masuk &mdash; {{ $_nama_aplikasi }}</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,8 +27,8 @@
       <div class="d-flex flex-wrap align-items-stretch">
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
           <div class="p-4 m-3">
-            <img src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}" width="80" class="shadow-light rounded-circle mb-5 mt-2">
-            <h4 class="text-dark font-weight-normal">Selamat datang di <span class="font-weight-bold">{{ config('app.name') }}</span></h4>
+            <img src="{{ $_logo }}" alt="{{ $_nama_aplikasi }}" width="80" class="shadow-light rounded-circle mb-5 mt-2">
+            <h4 class="text-dark font-weight-normal">Selamat datang di <span class="font-weight-bold">{{ $_nama_aplikasi }}</span></h4>
             <p class="text-muted">Sebelum memulai, anda harus masuk terlebih dahulu dengan akun anda.</p>
             <form method="POST" action="{{ route('masuk') }}" class="needs-validation" novalidate="">
               @csrf
@@ -69,7 +73,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="{{ asset('img/pantai.jpg') }}">
+        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="{{ asset('stisla/assets/img/pantai.jpg') }}">
           <div class="absolute-bottom-left index-2">
             <div class="text-light p-5 pb-2">
               <div class="mb-5 pb-3">

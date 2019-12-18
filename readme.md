@@ -22,10 +22,12 @@ $ composer require anamcoollzz/stisla
 Please see the [changelog](changelog.md) for more information on what has changed recently.
 
 # Step by step
+- Install fresh laravel
 - Setup your database configuration first in ```.env```
 - Remove ```User.php``` in app folder
 - Remove all default migrations in ```database/migrations``` folder
 - Remove all default seeder in ```database/seeds``` folder
+- Remove ```views``` folder in ```resources```
 - Publish all stisla component with below
 ``` bash 
 $ php artisan vendor:publish --tag=stisla.all 
