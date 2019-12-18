@@ -23,6 +23,7 @@ Please see the [changelog](changelog.md) for more information on what has change
 
 # Step by step
 - Setup your database configuration first in ```.env```
+- Remove all default migrations in database/migrations folder
 - Publish all stisla component with below
 ``` bash 
 $ php artisan vendor:publish --tag=stisla.all 
