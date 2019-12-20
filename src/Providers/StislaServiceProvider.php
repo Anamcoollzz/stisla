@@ -22,6 +22,15 @@ class StislaServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
+        
+        \Blade::include('stisla.components.input', 'input');
+        \Blade::include('stisla.components.inputemail', 'email');
+        \Blade::include('stisla.components.inputnumber', 'inputnumber');
+        \Blade::include('stisla.components.inputimage', 'inputimage');
+        \Blade::include('stisla.components.inputexcel', 'inputexcel');
+        \Blade::include('stisla.components.textarea', 'textarea');
+        \Blade::include('stisla.components.select', 'select');
+        \Blade::include('stisla.components.datepicker', 'datepicker');
     }
 
     /**
@@ -111,14 +120,6 @@ class StislaServiceProvider extends ServiceProvider
             'create'    => 'tambah',
             'edit'      => 'ubah',
         ]);
-        \Blade::include('stisla.components.input', 'input');
-        \Blade::include('stisla.components.inputemail', 'email');
-        \Blade::include('stisla.components.inputnumber', 'inputnumber');
-        \Blade::include('stisla.components.inputimage', 'inputimage');
-        \Blade::include('stisla.components.inputexcel', 'inputexcel');
-        \Blade::include('stisla.components.textarea', 'textarea');
-        \Blade::include('stisla.components.select', 'select');
-        \Blade::include('stisla.components.datepicker', 'datepicker');
 
 
         // Publishing the views.

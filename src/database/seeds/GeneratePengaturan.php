@@ -37,5 +37,10 @@ class GeneratePengaturan extends Seeder
         ], [
             'value'     => 'Nama Perusahaan',
         ]);
+        Pengaturan::updateOrCreate([
+            'key'       => 'logo',
+        ], [
+            'value'     => url('stisla/assets/img/stisla-fill.svg'),
+        ]);
     }
 }

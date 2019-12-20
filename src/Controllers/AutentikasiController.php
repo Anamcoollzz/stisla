@@ -29,6 +29,8 @@ class AutentikasiController extends Controller
 			]
 		]);
 		\Auth::login($user, $request->filled('remember'));
+		if($request->query('redirect'))
+			return redirect($request->query('redirect'));
 		return redirect()->route('dashboard');
 	}
 
