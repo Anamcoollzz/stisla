@@ -1,8 +1,14 @@
-@if(count($errors->all()) > 0)
+@php
+$noRequired = isset($no_required);
+if($noRequired){
+  $noRequired = $no_required;
+}
+@endphp
 
 <div class="form-group">
-  <label for="{{ $id }}">{{ $label }}</label>
-  <select class="form-control @error($id) is-invalid @else is-valid @enderror" name="{{ $id }}" id="{{ $id }}">
+  <label for="{{ $id }}">{{ $label }} @if($noRequired) @else <font color="red">(*)</font> @endif</label>
+  @if(count($errors->all()) > 0)
+  <select @if(!$noRequired) required="required" @endif class="form-control @error($id) is-invalid @else is-valid @enderror" name="{{ $id }}" id="{{ $id }}">
     @foreach ($selectData as $option => $optionText)
     <option @if(old($id) == $option) selected="selected" @endif value="{{ $option }}">{{ $optionText }}</option>
     @endforeach
@@ -16,17 +22,13 @@
     Data sudah benar
   </span>
   @enderror
-</div>
-
-@else
-
-<div class="form-group">
-  <label for="{{ $id }}">{{ $label }}</label>
-  <select class="form-control" name="{{ $id }}" id="{{ $id }}">
+  
+  @else
+  <select @if(!$noRequired) required="required" @endif class="form-control" name="{{ $id }}" id="{{ $id }}">
     @foreach ($selectData as $option => $optionText)
     <option @if($value == $option) selected="selected" @endif value="{{ $option }}">{{ $optionText }}</option>
     @endforeach
   </select>
+  @endif
 </div>
 
-@endif

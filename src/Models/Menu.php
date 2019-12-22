@@ -13,4 +13,9 @@ class Menu extends Model
     ];
     
     public $timestamps = false;
+
+    public function sub()
+    {
+        return $this->hasMany('App\Menu', 'parent_id');
+    }
 }

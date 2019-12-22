@@ -22,6 +22,12 @@ class StislaServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
+
+        \Schema::defaultStringLength(191);
+        \Route::resourceVerbs([
+            'create'    => 'tambah',
+            'edit'      => 'ubah',
+        ]);
         
         \Blade::include('stisla.components.input', 'input');
         \Blade::include('stisla.components.inputemail', 'email');
@@ -76,7 +82,7 @@ class StislaServiceProvider extends ServiceProvider
         ], 'public');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('resources/views/stisla'),
+            __DIR__ . '/../resources/views' => resource_path('views/stisla'),
         ], 'views');
 
         $this->publishes([
@@ -114,12 +120,6 @@ class StislaServiceProvider extends ServiceProvider
             __DIR__ . '/../database/seeds' => base_path('database\seeds'),
             __DIR__ . '/../Middleware' => base_path('app\Http\Middleware'),
         ], 'stisla.all');
-
-        \Schema::defaultStringLength(191);
-        \Route::resourceVerbs([
-            'create'    => 'tambah',
-            'edit'      => 'ubah',
-        ]);
 
 
         // Publishing the views.
