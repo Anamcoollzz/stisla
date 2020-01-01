@@ -11,7 +11,11 @@ if($noRequired){
   <div class="input-group">
     <div class="input-group-prepend">
       <div class="input-group-text">
-        <i class="{{ $ikon }}"></i>
+        @if(strpos($ikon, 'fa-') !== false)
+          <i class="{{ $ikon }}"></i>
+        @else
+          {{ $ikon }}
+        @endif
       </div>
     </div>
     @endif
