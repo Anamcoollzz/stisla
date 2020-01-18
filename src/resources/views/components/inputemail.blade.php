@@ -1,1 +1,0 @@
-@input(['type'=>'email', 'id'=>'email', 'label'=>'Email', 'ikon'=>'fas fa-envelope'])

@@ -17,6 +17,11 @@ class CreatePengaturansTable extends Migration
             $table->tinyIncrements('id');
             $table->string('key');
             $table->text('value');
+            $table->string('form_type')->default('text');
+            $table->string('grup')->default('pengaturan_umum');
+            $table->string('grup_label')->default('Pengaturan Umum');
+            $table->string('ikon')->default('fas fa-cog');
+            $table->string('label')->default('Pengaturan apa hayo');
         });
     }
 

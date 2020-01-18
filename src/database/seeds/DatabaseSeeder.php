@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GenerateAdmin::class);
         $this->call(GenerateMenu::class);
+        $this->call(GenerateModul::class);
         $this->call(GeneratePengaturan::class);
+        $this->call(ContohSeeder::class);
     }
 }

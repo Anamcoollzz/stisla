@@ -10,7 +10,7 @@ class AutentikasiController extends Controller
 {
 	public function formMasuk()
 	{
-		return view('stisla.autentikasi.masuk');
+		return view('stisla.autentikasi.masuk', ['title'=>'Masuk']);
 	}
 
 	public function masuk(Request $request)
@@ -52,7 +52,7 @@ class AutentikasiController extends Controller
 	{
 		return view('stisla.profil.index', [
 			'title'		=> 'Profil',
-			'active'	=> null,
+			'active'	=> 'profil',
 			'd'			=> \Auth::user(),
 			'action'	=> route('profil.update'),
 		]);
@@ -65,12 +65,56 @@ class AutentikasiController extends Controller
 			'nama'			=> 'required',
 			'email'			=> 'required|unique:users,email,'.$user->id,
 			'password'		=> 'nullable|min:5',
+			'avatar'		=> 'nullable|file|mimes:jpeg,png',
 		]);
 		$user->nama = $request->nama;
 		$user->email = $request->email;
+		if($request->file('avatar')){
+			$user->avatar = asset(\Storage::url($request->file('avatar')->store('public/avatar')));
+		}
 		if($request->filled('password'))
 			$user->password = $request->password;
 		$user->save();
 		return redirect()->back()->with('success_msg', 'Profil berhasil diperbarui');
+	}
+
+	public function pengaturan()
+	{
+		$pengaturan = \App\Models\Pengaturan::all()->groupBy('grup_label')->all();
+		return view('stisla.pengaturan.index', [
+			'title'				=> \App\Models\Modul::where('nama', 'pengaturan')->first()->label,
+			'action'			=> route('pengaturan'),
+			'active'			=> 'pengaturan',
+			'pengaturan'		=> $pengaturan,
+		]);
+	}
+
+	public function updatePengaturan(Request $request)
+	{
+		$pengaturan = Pengaturan::all();
+		$rules = $pengaturan->each(function($item){
+			if($form_type == 'image')
+				$item->rule = 'nullable|file|mimes:jpeg,png';
+			else
+				$item->rule = 'required';
+			return $item;
+		})->pluck('rule', 'key')->toArray();
+		$request->validate($rules);
+		foreach ($pengaturan as $p) {
+			if($p->form_type == 'image'){
+				if($request->file($p->key)){
+					$gambar = asetku(\Storage::url($request->file($p->key)->store('public/'.$p->key)));
+					$p->update([
+						'value' => $gambar,
+					]);
+				}
+			}
+			else{
+				$p->update([
+					'value' => $request[$p->key],
+				]);
+			}
+		}
+		return redirect()->back()->with('success_msg', 'Pengaturan berhasil diperbarui');
 	}
 }

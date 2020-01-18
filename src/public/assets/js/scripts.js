@@ -581,12 +581,6 @@ $(function() {
 
   // Daterangepicker
   if(jQuery().daterangepicker) {
-    if($(".datepicker").length) {
-      $('.datepicker').daterangepicker({
-        locale: {format: 'YYYY-MM-DD'},
-        singleDatePicker: true,
-      });
-    }
     if($(".datetimepicker").length) {
       $('.datetimepicker').daterangepicker({
         locale: {format: 'YYYY-MM-DD hh:mm'},

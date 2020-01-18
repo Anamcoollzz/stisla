@@ -28,14 +28,18 @@ class StislaServiceProvider extends ServiceProvider
             'create'    => 'tambah',
             'edit'      => 'ubah',
         ]);
-        
+
         \Blade::include('stisla.components.input', 'input');
-        \Blade::include('stisla.components.inputemail', 'email');
-        \Blade::include('stisla.components.inputnumber', 'inputnumber');
-        \Blade::include('stisla.components.inputimage', 'inputimage');
-        \Blade::include('stisla.components.inputexcel', 'inputexcel');
+        \Blade::include('stisla.components.email', 'email');
+        \Blade::include('stisla.components.password', 'password');
+        \Blade::include('stisla.components.number', 'number');
+        \Blade::include('stisla.components.gambar', 'gambar');
+        \Blade::include('stisla.components.gambar', 'image');
+        \Blade::include('stisla.components.file', 'file');
+        \Blade::include('stisla.components.excel', 'excel');
         \Blade::include('stisla.components.textarea', 'textarea');
         \Blade::include('stisla.components.select', 'select');
+        \Blade::include('stisla.components.select2', 'select2');
         \Blade::include('stisla.components.datepicker', 'datepicker');
     }
 
@@ -64,7 +68,7 @@ class StislaServiceProvider extends ServiceProvider
     {
         return ['stisla'];
     }
-    
+
     /**
      * Console-specific booting.
      *
@@ -73,53 +77,42 @@ class StislaServiceProvider extends ServiceProvider
     protected function bootForConsole()
     {
 
-        $this->publishes([
-            __DIR__.'/../../config/stisla.php' => config_path('stisla.php'),
-        ], 'stisla.config');
+        $config         = [__DIR__ . '/../../config/stisla.php' => config_path('stisla.php')];
+        $config[__DIR__ . '/../config/app.php'] = config_path('app.php');
+        $public         = [__DIR__ . '/../public' => public_path('stisla')];
+        $views          = [__DIR__ . '/../resources/views' => resource_path('views/stisla')];
+        $lang           = [__DIR__ . '/../resources/lang' => resource_path('lang')];
+        $controllers    = [__DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla')];
+        $middleware     = [__DIR__ . '/../Middleware' => base_path('app\Http\Middleware')];
+        $models         = [__DIR__ . '/../Models' => base_path('app\Models')];
+        $migrations     = [__DIR__ . '/../database/migrations' => base_path('database\migrations')];
+        $seeds          = [__DIR__ . '/../database/seeds' => base_path('database\seeds')];
+        $batch          = [__DIR__ . '/../hehe.bat' => base_path('hehe.bat')];
+        $composer       = [__DIR__ . '/../composer/composer.json' => base_path('composer.json')];
+        $helpers        = [__DIR__ . '/../Helpers' => base_path('app/Helpers')];
+        $user_model     = [__DIR__ . '/../User.php' => base_path('app/User.php')];
+        $route          = [__DIR__ . '/../routes/stisla.php' => base_path('routes/stisla.php')];
+        $service_provider          = [__DIR__ . '/../Providers/RouteServiceProvider.php' => base_path('app/Providers/RouteServiceProvider.php')];
 
-        $this->publishes([
-            __DIR__ . '/../public' => public_path('stisla'),
-        ], 'public');
+        $this->publishes($config, 'stisla.config');
+        $this->publishes($public, 'stisla.public');
+        $this->publishes($views, 'stisla.views');
+        $this->publishes($lang, 'stisla.lang');
+        $this->publishes($controllers, 'stisla.controllers');
+        $this->publishes($middleware, 'stisla.middleware');
+        $this->publishes($models, 'stisla.models');
+        $this->publishes($migrations, 'stisla.migrations');
+        $this->publishes($seeds, 'stisla.seeds');
+        $this->publishes($batch, 'stisla.batch');
+        $this->publishes($composer, 'stisla.composer');
+        $this->publishes($helpers, 'stisla.helpers');
+        $this->publishes($user_model, 'stisla.user_model');
+        $this->publishes($service_provider, 'stisla.ser$service_provider');
+        $this->publishes($route, 'stisla.route');
 
-        $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/stisla'),
-        ], 'views');
+        $all = array_merge($config, $public, $views, $lang, $controllers, $middleware, $models, $migrations, $seeds, $batch, $composer, $helpers, $user_model, $route, $service_provider);
 
-        $this->publishes([
-            __DIR__ . '/../resources/lang' => resource_path('resources/lang'),
-        ], 'lang');
-
-        $this->publishes([
-            __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
-        ], 'controllers');
-
-        $this->publishes([
-            __DIR__ . '/../Middleware' => base_path('app\Http\Middleware'),
-        ], 'middleware');
-
-        $this->publishes([
-            __DIR__ . '/../Models' => base_path('app'),
-        ], 'models');
-
-        $this->publishes([
-            __DIR__ . '/../database/migrations' => base_path('database\migrations'),
-        ], 'migrations');
-
-        $this->publishes([
-            __DIR__ . '/../database/seeds' => base_path('database\seeds'),
-        ], 'seeds');
-
-        $this->publishes([
-            __DIR__ . '/../controllers' => base_path('app\Http\Controllers\Stisla'),
-            __DIR__ . '/../resources/lang' => resource_path('lang'),
-            __DIR__ . '/../resources/views' => resource_path('views/stisla'),
-            __DIR__ . '/../../config/stisla.php' => config_path('stisla.php'),
-            __DIR__ . '/../Models' => base_path('app'),
-            __DIR__ . '/../public' => public_path('stisla'),
-            __DIR__ . '/../database/migrations' => base_path('database\migrations'),
-            __DIR__ . '/../database/seeds' => base_path('database\seeds'),
-            __DIR__ . '/../Middleware' => base_path('app\Http\Middleware'),
-        ], 'stisla.all');
+        $this->publishes($all, 'stisla.all');
 
 
         // Publishing the views.

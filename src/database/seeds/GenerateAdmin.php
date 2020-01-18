@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Models\User;
 
 class GenerateAdmin extends Seeder
 {
@@ -17,7 +17,8 @@ class GenerateAdmin extends Seeder
         ], [
         	'nama'			=> 'Hairul Anam',
         	'email'			=> 'admin@admin.com',
-        	'password'		=> bcrypt('admin'),
+            'password'		=> bcrypt('admin'),
+            'avatar'        => asset('assets/img/avatar/avatar-1.png'),
         ]);
     }
 }
