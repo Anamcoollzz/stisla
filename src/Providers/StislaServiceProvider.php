@@ -41,6 +41,8 @@ class StislaServiceProvider extends ServiceProvider
         \Blade::include('stisla.components.select', 'select');
         \Blade::include('stisla.components.select2', 'select2');
         \Blade::include('stisla.components.datepicker', 'datepicker');
+        \Blade::include('stisla.components.timemask', 'timemask');
+        \Blade::include('stisla.components.uangmask', 'uangmask');
     }
 
     /**
